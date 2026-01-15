@@ -38,6 +38,20 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLit(PCFParser.LitContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Var}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVar(PCFParser.VarContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Let}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLet(PCFParser.LetContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code BinOp}
 	 * labeled alternative in {@link PCFParser#term}.
 	 * @param ctx the parse tree

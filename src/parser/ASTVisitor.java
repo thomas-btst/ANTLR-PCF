@@ -14,7 +14,7 @@ public class ASTVisitor extends PCFBaseVisitor<AST> {
 
     @Override
     public AST visitBinOp(PCFParser.BinOpContext ctx) {
-        OP op = OP.parseOP(ctx.OP().getText());
+        OP op = OP.parseOP((ctx.OP() == null ? ctx.OPP() : ctx.OP()).getText());
         List<PCFParser.TermContext> ANTLRTerms = ctx.term();
         List<Term> terms = new ArrayList<>();
         for (PCFParser.TermContext ANTLRTerm : ANTLRTerms)
@@ -31,8 +31,25 @@ public class ASTVisitor extends PCFBaseVisitor<AST> {
         return new Cond(terms.get(0), terms.get(1), terms.get(2));
     }
 
-    @Override
-    public AST visitPar() {
 
+    @Override
+    public AST visitPar(PCFParser.ParContext ctx) {
+        PCFParser.TermContext ANTLRTerm = ctx.term();
+        return visit(ANTLRTerm);
+    }
+
+    @Override
+    public AST visitVar(PCFParser.VarContext ctx) {
+        return new Var(ctx.getText());
+    }
+
+    @Override
+    public AST visitLet(PCFParser.LetContext ctx) {
+        String var = ctx.VAR().getText();
+        List<PCFParser.TermContext> ANTLRTerms = ctx.term();
+        List<Term> terms = new ArrayList<>();
+        for (PCFParser.TermContext ANTLRTerm : ANTLRTerms)
+            terms.add((Term) visit(ANTLRTerm));
+        return new Let(var, terms.get(0), terms.get(1));
     }
 }
