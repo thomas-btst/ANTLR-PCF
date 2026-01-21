@@ -5,8 +5,10 @@ grammar PCF;
 program : term EOF ;
 term : LIT                                   # Lit
      | VAR                                   # Var
+     | term term                             # Apply
      | term OPP term                         # BinOp
      | term OP term                          # BinOp
+     | FUN VAR ARROW term                    # Fun
      | IFZ term THEN term ELSE term          # Cond
      | LET VAR EQUAL term IN term            # Let
      | PARENLEFT term PARENRIGHT             # Par
@@ -23,6 +25,8 @@ ELSE : 'else';
 LET : 'let';
 EQUAL : '=';
 IN: 'in';
+FUN: 'fun';
+ARROW: '->';
 PARENLEFT: '(';
 PARENRIGHT: ')';
 VAR : [a-zA-Z_] [a-zA-Z0-9_]*;

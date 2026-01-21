@@ -20,7 +20,10 @@ public class Cond extends Term {
             case IntVal val -> val.value() == 0
                 ? branchZero.interp(e)
                 : branchNotZero.interp(e);
-            default -> throw new Error();
+            default -> throw new Error(
+                "Condition error: expected IntVal, but got "
+                    + value.getClass().getSimpleName()
+            );
         };
     }
 }
