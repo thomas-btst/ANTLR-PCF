@@ -25,16 +25,20 @@ public class BinOp extends Term {
                             case PLUS -> value1 + value2;
                             case MINUS -> value1 - value2;
                             case TIMES -> value1 * value2;
-                            case DIVIDE -> value1 / value2;
+                            case DIVIDE -> {
+                                if (value2 == 0)
+                                    throw new Error("Division by zero is not allowed");
+                                yield value1 / value2;
+                            }
                         };
                         yield new IntVal(res);
                     }
 
-                    default -> throw new Error();
+                    default -> throw new Error("Type Error: Operator " + op + " requires integers");
                 };
             }
 
-            default -> throw new Error();
+            default -> throw new Error("Type Error: Operator " + op + " requires integers");
         };
     }
 }

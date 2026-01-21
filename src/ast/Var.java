@@ -12,6 +12,6 @@ public class Var extends Term {
 
     @Override
     public Value interp(Env e) {
-        return e.lookup(name).orElseThrow();
+        return e.lookup(name).orElseThrow(() -> new Error("Variable " + name + " is undefined"));
     }
 }
