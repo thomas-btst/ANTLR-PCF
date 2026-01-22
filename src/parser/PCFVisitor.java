@@ -31,6 +31,13 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCond(PCFParser.CondContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Fix}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFix(PCFParser.FixContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Lit}
 	 * labeled alternative in {@link PCFParser#term}.
 	 * @param ctx the parse tree
@@ -45,6 +52,13 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVar(PCFParser.VarContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Apply}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitApply(PCFParser.ApplyContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Let}
 	 * labeled alternative in {@link PCFParser#term}.
 	 * @param ctx the parse tree
@@ -58,4 +72,11 @@ public interface PCFVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBinOp(PCFParser.BinOpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Fun}
+	 * labeled alternative in {@link PCFParser#term}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFun(PCFParser.FunContext ctx);
 }
