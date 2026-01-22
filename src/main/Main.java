@@ -21,7 +21,7 @@ public class Main {
      *                otherwise the program is entered at the console.
      *             - "-v" indicates verbose mode.
      */
-    static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         InputStream is = null;
 
         for (String arg: args) {

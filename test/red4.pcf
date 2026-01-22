@@ -1,0 +1,1 @@
+let z = fun x -> 0 in z fun x -> 0
