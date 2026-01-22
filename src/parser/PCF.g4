@@ -9,6 +9,7 @@ term : LIT                                   # Lit
      | term OPP term                         # BinOp
      | term OP term                          # BinOp
      | FUN VAR ARROW term                    # Fun
+     | FIX VAR term                          # Fix
      | IFZ term THEN term ELSE term          # Cond
      | LET VAR EQUAL term IN term            # Let
      | PARENLEFT term PARENRIGHT             # Par
@@ -26,6 +27,7 @@ LET : 'let';
 EQUAL : '=';
 IN: 'in';
 FUN: 'fun';
+FIX: 'fix';
 ARROW: '->';
 PARENLEFT: '(';
 PARENRIGHT: ')';
