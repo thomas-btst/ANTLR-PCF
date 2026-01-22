@@ -7,6 +7,9 @@ public class Test {
         // Blue
         test("blue0", true);
         test("blue1", false);
+        test("blue2", false);
+        test("blue3", false);
+        test("blue4", true);
 
         // Red
         test("red0", false);
