@@ -66,4 +66,9 @@ public class ASTVisitor extends PCFBaseVisitor<AST> {
             terms.add((Term) visit(ANTLRTerm));
         return new Apply(terms.get(0), terms.get(1));
     }
+
+    @Override
+    public AST visitFix(PCFParser.FixContext ctx) {
+        return new Fix(ctx.VAR().getText(), (Term) visit(ctx.term()));
+    }
 }
