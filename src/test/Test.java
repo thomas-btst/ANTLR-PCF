@@ -3,7 +3,18 @@ package test;
 import main.Main;
 
 public class Test {
-    static void main() {
+    public static void main(String[] args) {
+        // Green (literals, arithmetic, conditionals)
+        test("green0", false);  // simple literal: 42
+        test("green1", false);  // arithmetic: 3 + 4 * 2 - 1
+        test("green2", false);  // nested arithmetic: 10 / 2 + 3 * (4 - 1)
+        test("green3", false);  // ifz true branch: ifz 0 then 1 else 2
+        test("green4", false);  // ifz with computed zero: ifz 5 - 5 then 100 else 200
+        test("green5", false);  // ifz false branch: ifz 1 then 10 else 20
+        test("green6", true);   // division by zero: 1 / 0
+        test("green7", false);  // complex: ifz 10 / 5 - 2 then 42 else 0
+        test("green8", true);   // division by computed zero: 10 / (3 - 3)
+
         // Blue
         test("blue0", true);
         test("blue1", false);
@@ -29,9 +40,9 @@ public class Test {
         test("black3", false);
     }
 
-    public static void test(String name, Boolean mustFail) {
+    public static void test(String name, boolean mustFail) {
         try {
-            IO.println("**** " + name);
+            System.out.println("**** " + name);
             Main.main(new String[] {"-v", "test/" + name + ".pcf"});
             if (mustFail)
                 IO.println("Test failed : program must fail but passed");
