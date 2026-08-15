@@ -40,8 +40,8 @@ public class Main {
         }
         Term term = (Term) analyze(is);
         if (verbose)
-            IO.println("AST: " + term);
-        IO.println("===> " + term.interp(new EmptyEnv()));
+            System.out.println("AST: " + term);
+        System.out.println("===> " + term.interp(new EmptyEnv()));
     }
 
     public static AST analyze(InputStream is) throws IOException {
@@ -60,7 +60,7 @@ public class Main {
         // generating parse tree
         ParseTree tree = parser.term();
         if (verbose)
-            IO.println("ANTLR Syntax Tree: " + tree.toStringTree(parser));
+            System.out.println("ANTLR Syntax Tree: " + tree.toStringTree(parser));
         if (ErrorFlag.getFlag()) // exit in case of an error
             throw new SyntaxError(ErrorFlag.getMsg());
         else {                   // else visit parse tree to generate AST
